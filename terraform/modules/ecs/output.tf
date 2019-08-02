@@ -1,10 +1,6 @@
-// output "repository_url" {
-//   value = "${aws_ecr_repository.web-app.repository_url}"
-// }
-
-// output "service_name" {
-//   value = "${aws_ecs_service.web-api.name}"
-// }
+output "cluster_arn" {
+  value = "${aws_ecs_cluster.cluster.arn}"
+}
 
 // output "alb" {
 //   value = "${aws_alb.app_alb.dns_name}"

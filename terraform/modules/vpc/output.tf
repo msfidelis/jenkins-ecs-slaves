@@ -3,19 +3,19 @@ output "vpc_id" {
 }
 
 output "public_subnet_1a" {
-  value = "${aws_subnet.public_subnet_us_east_1a.*.id}"
+  value = "${aws_subnet.public_subnet_us_east_1a.id}"
 }
 
 output "public_subnet_1b" {
-  value = "${aws_subnet.public_subnet_us_east_1b.*.id}"
+  value = "${aws_subnet.public_subnet_us_east_1b.id}"
 }
 
 output "app_sg_id" {
   value = "${aws_security_group.app_sg.id}"
 }
 
-output "alb_sg_id" {
-  value = "${aws_security_group.alb_sg.id}"
+output "jenkins_sg_id" {
+  value = "${aws_security_group.jenkins_sg.id}"
 }
 
 output "ecs_sg_id" {

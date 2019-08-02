@@ -27,7 +27,7 @@ variable "app_sg_id" {
   description = "App Security Group"
 }
 
-variable "alb_sg_id" {
+variable "jenkins_sg_id" {
   description = "Application Load Balancer Security Group"
 }
 

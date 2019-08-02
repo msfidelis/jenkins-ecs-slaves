@@ -8,11 +8,36 @@
 
 > How to use ECS Cluster to build your applications with Jenkins
 
-## Install
+## Create Cluster with Terraform - Example for testing.
 
 ```sh
-npm install
+cd terraform/
+terraform init
+terraform apply
 ```
+
+
+```
+Apply complete! Resources: 17 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+server_configs =
+
+Cluster Example for Jenkins Slaves
+
+Put this informations on your Jenkins master configuration.
+
+Manage Jenkins –> Configure System  -> Add a new cloud -> Amazon EC2 Container Service Cloud
+
+* Cluster Name: jenkins-ecs-build
+* Cluster ARN: arn:aws:ecs:us-east-1:xxxxxxxxxx:cluster/jenkins-ecs-build
+* Cluster Region: us-east-1
+* Subnets ID's: subnet-0a905f91dab361f2a, subnet-05fcd0a6745b4a258
+* Security Group for your task: sg-02afde594f30c786f
+```
+
+
 
 ## Author
 

@@ -1,6 +1,6 @@
 # App Security Group
 resource "aws_security_group" "app_sg" {
-  name        = "${var.cluster_name}-app-sg"
+  name        = "${var.cluster_name}-cluster-sg"
   description = "Default security group to allow inbound/outbound from the VPC"
   vpc_id      = "${aws_vpc.cluster_vpc.id}"
   depends_on  = ["aws_vpc.cluster_vpc"]
@@ -25,16 +25,41 @@ resource "aws_security_group" "app_sg" {
 }
 
 # ALB Security Group
-resource "aws_security_group" "alb_sg" {
-  name        = "${var.cluster_name}-alb-sg"
-  description = "ALB Security Group"
+resource "aws_security_group" "jenkins_sg" {
+  name        = "${var.cluster_name}-jenkins-sg"
+  description = "Jenkins Security Group"
   vpc_id      = "${aws_vpc.cluster_vpc.id}"
 
   ingress {
-    from_port   = "${var.alb_port}"
-    to_port     = "${var.container_port}"
+    from_port   = "8080"
+    to_port     = "8080"
     protocol    = "tcp"
+    description = "Dashboard Access Put your IP here"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = "8080"
+    to_port     = "8080"
+    protocol    = "tcp"
+    description = "ECS Communication"
+    security_groups = ["${aws_security_group.app_sg.id}"]
+  }
+
+  ingress {
+    from_port   = "22"
+    to_port     = "22"
+    protocol    = "tcp"
+    description = "SSH"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = "50000"
+    to_port     = "50000"
+    protocol    = "tcp"
+    description = "ECS Communication"
+    security_groups = ["${aws_security_group.app_sg.id}"]
   }
 
   ingress {
