@@ -1,1 +1,3 @@
 jenkins_home
+terraform/.terraform
+terraform/terraform.tfstate*
