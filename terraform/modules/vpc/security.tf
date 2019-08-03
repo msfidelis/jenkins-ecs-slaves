@@ -11,15 +11,31 @@ resource "aws_security_group" "app_sg" {
     protocol  = "-1"
     self      = true
   }
+  
+  ingress {
+    from_port = "50000"
+    to_port   = "50000"
+    protocol  = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+
+  ingress {
+    from_port = "8080"
+    to_port   = "8080"
+    protocol  = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   egress {
-    from_port = "0"
-    to_port   = "0"
-    protocol  = "-1"
-    self      = "true"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags {
+    Name        = "${var.cluster_name}-agent-build"
     Environment = "${var.cluster_name}"
   }
 }
@@ -41,6 +57,14 @@ resource "aws_security_group" "jenkins_sg" {
   ingress {
     from_port   = "8080"
     to_port     = "8080"
+    protocol    = "tcp"
+    description = "ECS Communication"
+    security_groups = ["${aws_security_group.app_sg.id}"]
+  }
+
+  ingress {
+    from_port   = "50000"
+    to_port     = "50000"
     protocol    = "tcp"
     description = "ECS Communication"
     security_groups = ["${aws_security_group.app_sg.id}"]
@@ -77,11 +101,11 @@ resource "aws_security_group" "jenkins_sg" {
   }
 
   tags {
-    Name = "${var.cluster_name}-alb-sg"
+    Name = "${var.cluster_name}-jenkins-sg"
   }
 }
 
-# ECS Cluster Security Group
+# ECS Cluster Security Group - KILL
 resource "aws_security_group" "ecs_sg" {
   vpc_id      = "${aws_vpc.cluster_vpc.id}"
   name        = "${var.cluster_name}-ecs-service-sg"
