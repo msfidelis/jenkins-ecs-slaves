@@ -1,0 +1,44 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1452746887373",
+            "Action": [
+                "ecs:RegisterTaskDefinition",
+                "ecs:DeregisterTaskDefinition",
+                "ecs:ListClusters",
+                "ecs:DescribeContainerInstances",
+                "ecs:ListTaskDefinitions",
+                "ecs:DescribeTaskDefinition"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Sid": "Stmt1452746887374",
+            "Action": [
+                "ecs:StopTask",
+                "ecs:ListContainerInstances"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:ecs:<region>:<accountId>:cluster/<clusterName>"
+        },
+        {
+            "Sid": "Stmt1452746887375",
+            "Action": [
+                "ecs:RunTask"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:ecs:<region>:<accountId>:task-definition/jenkins-agent:*"
+        },
+        {
+            "Sid": "Stmt1452746887376",
+            "Action": [
+                "ecs:StopTask",
+		"ecs:DescribeTasks"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:ecs:<region>:<accountId>:task/*"
+        }
+    ]
+}

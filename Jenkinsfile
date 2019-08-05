@@ -1,8 +1,15 @@
 pipeline {
     // agent any
-    agent { docker { image 'node:10.0' } }
+    agent { label 'jenkins-build' }
 
     stages {
+
+                // Deploy
+        stage('Privisioning Slave') {
+            steps {
+                echo 'Done...'
+            }
+        }
 
         // Build General Dependencies
         stage('Dependencies') {
@@ -26,8 +33,27 @@ pipeline {
             }
         }
 
+        stage('Linter') {
+            steps {
+                dir("micro-api/") {
+                    echo 'Lint..'
+                }
+            }
+        }
+
         // Run unit tests
-        stage('Test') {
+        stage('Unit Tests') {
+            steps {
+                dir("micro-api/") {
+                    sh "ls -lha"
+                    echo 'Testing..'
+                    sh "npm run unit-test"
+                }
+            }
+        }
+
+        // Run integration tests - @TODO
+        stage('Integration Tests') {
             steps {
                 dir("micro-api/") {
                     sh "ls -lha"

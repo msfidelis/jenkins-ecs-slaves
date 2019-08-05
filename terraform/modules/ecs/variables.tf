@@ -23,16 +23,8 @@ variable "public_subnet_1b" {
   description = "Public Subnet on us-east-1b"
 }
 
-variable "app_sg_id" {
-  description = "App Security Group"
-}
-
 variable "jenkins_sg_id" {
   description = "Application Load Balancer Security Group"
-}
-
-variable "ecs_sg_id" {
-  description = "ECS Security Group"
 }
 
 variable "security_groups_ids" {
