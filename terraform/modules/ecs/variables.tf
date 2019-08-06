@@ -71,3 +71,4 @@ variable "cpu_to_scale_up" {
 variable "cpu_to_scale_down" {
   description = "CPU % to Scale Down the number of containers"
 }
+
