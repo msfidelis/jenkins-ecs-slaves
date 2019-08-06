@@ -6,10 +6,14 @@
   </a>
 </p>
 
-> How to use ECS Cluster to build your applications with Jenkins
-
 ![Logo](.github/img/logo.png)
 
+> How to use ECS Cluster to build your applications with Jenkins
+
+
+## Architecure 
+
+![Architecture](.github/img/Jenkins-ECS.png)
 
 ## Create Cluster with Terraform - Example for testing.
 
