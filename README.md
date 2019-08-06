@@ -8,6 +8,9 @@
 
 > How to use ECS Cluster to build your applications with Jenkins
 
+![Logo](.github/img/logo.png)
+
+
 ## Create Cluster with Terraform - Example for testing.
 
 ```sh
