@@ -44,6 +44,9 @@ Manage Jenkins –> Configure System  -> Add a new cloud -> Amazon EC2 Container
 * Security Group for your task: sg-02afde594f30c786f
 ```
 
+## Docs 
+
+* [[PT-BR] Jenkins :: Escalando Jenkins Slaves do AWS Fargate / ECS](https://www.nanoshots.com.br/2019/08/jenkins-escalando-jenkins-slaves-do-aws.html)
 
 
 ## Author
