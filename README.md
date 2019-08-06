@@ -8,7 +8,7 @@
 
 ![Logo](.github/img/logo.png)
 
-> How to use ECS Cluster to build your applications with Jenkins
+> How to use ECS Cluster to build / deploy your applications with Jenkins Slaves
 
 
 ## Architecure 
